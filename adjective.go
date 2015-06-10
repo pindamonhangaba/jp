@@ -76,23 +76,23 @@ type IAdjective struct {
 	Stem string
 }
 
-func NAAdjective(adjective string) NAAdjective{
+func NewNAAdjective(adjective string) NAAdjective {
 	return NAAdjective{Stem: adjective}
 }
 
-func IAdjective(adjective string) IAdjective {
+func NewIAdjective(adjective string) IAdjective {
 	adj := IAdjective{Raw: adjective}
 	adj.Stem = adjective[:len(adjective)-1]
 	adj.Stem = adjective[len(adjective)-1:]
 	return adj
 }
 
-func (adj *IAdjective) conjugate() []AdjConjugation{
+func (adj *IAdjective) conjugate() []AdjConjugation {
 	var adjs []AdjConjugation
-	for _,conj := range iAdjConjugations {
+	for _, conj := range iAdjConjugations {
 		adjconj := conj
 		// treat special case いい
-		if adj.Raw == "いい" && adjconj.Polarity != "Affirmative" && adjconj.Tense != "Present"{
+		if adj.Raw == "いい" && adjconj.Polarity != "Affirmative" && adjconj.Tense != "Present" {
 			adjconj.Conjugated = "よ" + conj.AdvEndChange + conj.Conjugation
 		} else {
 			adjconj.Conjugated = adj.Stem + conj.AdvEndChange + conj.Conjugation
@@ -103,9 +103,9 @@ func (adj *IAdjective) conjugate() []AdjConjugation{
 	return adjs
 }
 
-func (adj *NAAdjective) conjugate() []AdjConjugation{
+func (adj *NAAdjective) conjugate() []AdjConjugation {
 	var adjs []AdjConjugation
-	for _,conj := range naAdjConjugations {
+	for _, conj := range naAdjConjugations {
 		adjconj := conj
 		adjconj.Conjugated = adj.Stem + conj.Conjugation
 		append(adjs, adjconj)

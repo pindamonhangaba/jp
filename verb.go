@@ -1,10 +1,10 @@
 package jp
 
 import (
-	"os/exec"
-	"pkg/bytes"
-	"pkg/log"
+	"bytes"
 	"encoding/json"
+	"log"
+	"os/exec"
 )
 
 type VerbSimpleConjugation struct {
@@ -16,7 +16,7 @@ type VerbComplexConjugation struct {
 }
 
 type japkatResult struct {
-	basic []VerbSimpleConjugation
+	basic   []VerbSimpleConjugation
 	complex []VerbComplexConjugation
 }
 
@@ -24,11 +24,11 @@ type Verb struct {
 	Raw string
 }
 
-func Verb(verb string) Verb {
+func NewVerb(verb string) Verb {
 	return Verb{Raw: verb}
 }
 
-func (verb *Verb) conjugate() (error, []VerbSimpleConjugation, []VerbComplexConjugation){
+func (verb *Verb) conjugate() (error, []VerbSimpleConjugation, []VerbComplexConjugation) {
 	cmd := exec.Command("JapKatsuyouCLI", Verb.Raw)
 	var out bytes.Buffer
 	cmd.Stdout = &out
