@@ -14,7 +14,7 @@ func (noun *Noun) conjugate() []AdjConjugation {
 	for _, conj := range naAdjConjugations {
 		adjconj := conj
 		adjconj.Conjugated = noun.Stem + conj.Conjugation
-		append(adjs, adjconj)
+		adjs = append(adjs, adjconj)
 	}
 	return adjs
 }

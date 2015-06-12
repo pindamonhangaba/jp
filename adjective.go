@@ -98,7 +98,7 @@ func (adj *IAdjective) conjugate() []AdjConjugation {
 			adjconj.Conjugated = adj.Stem + conj.AdvEndChange + conj.Conjugation
 		}
 
-		append(adjs, adjconj)
+		adjs = append(adjs, adjconj)
 	}
 	return adjs
 }
@@ -108,7 +108,7 @@ func (adj *NAAdjective) conjugate() []AdjConjugation {
 	for _, conj := range naAdjConjugations {
 		adjconj := conj
 		adjconj.Conjugated = adj.Stem + conj.Conjugation
-		append(adjs, adjconj)
+		adjs = append(adjs, adjconj)
 	}
 	return adjs
 }
