@@ -87,7 +87,7 @@ func NewIAdjective(adjective string) IAdjective {
 	return adj
 }
 
-func (adj *IAdjective) conjugate() []AdjConjugation {
+func (adj *IAdjective) Conjugate() []AdjConjugation {
 	var adjs []AdjConjugation
 	for _, conj := range iAdjConjugations {
 		adjconj := conj
@@ -103,7 +103,7 @@ func (adj *IAdjective) conjugate() []AdjConjugation {
 	return adjs
 }
 
-func (adj *NAAdjective) conjugate() []AdjConjugation {
+func (adj *NAAdjective) Conjugate() []AdjConjugation {
 	var adjs []AdjConjugation
 	for _, conj := range naAdjConjugations {
 		adjconj := conj
