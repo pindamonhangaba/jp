@@ -16,8 +16,8 @@ type VerbComplexConjugation struct {
 }
 
 type japkatResult struct {
-	basic   []VerbSimpleConjugation
-	complex []VerbComplexConjugation
+	Basic   []VerbSimpleConjugation
+	Complex []VerbComplexConjugation
 }
 
 type Verb struct {
@@ -43,5 +43,5 @@ func (verb *Verb) Conjugate() (error, []VerbSimpleConjugation, []VerbComplexConj
 		log.Fatal(err)
 	}
 
-	return err, result.basic, result.complex
+	return err, result.Basic, result.Complex
 }
