@@ -28,7 +28,7 @@ func NewVerb(verb string) Verb {
 	return Verb{Raw: verb}
 }
 
-func (verb *Verb) conjugate() (error, []VerbSimpleConjugation, []VerbComplexConjugation) {
+func (verb *Verb) Conjugate() (error, []VerbSimpleConjugation, []VerbComplexConjugation) {
 	cmd := exec.Command("JapKatsuyouCLI", verb.Raw)
 	var out bytes.Buffer
 	cmd.Stdout = &out
