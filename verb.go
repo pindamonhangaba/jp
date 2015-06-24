@@ -21,7 +21,7 @@ type japkatResult struct {
 }
 
 type Verb struct {
-	Raw string
+	Stem, Raw string
 }
 
 func NewVerb(verb string) Verb {
@@ -43,5 +43,19 @@ func (verb *Verb) Conjugate() (error, []VerbSimpleConjugation, []VerbComplexConj
 		log.Fatal(err)
 	}
 
+	verb.Stem = getStem(result.Complex)
+
 	return err, result.Basic, result.Complex
+}
+
+func getStem(conjugations []VerbComplexConjugation) string {
+	for _, value := range conjugations {
+		if value.CForm == "Present" && value.Politeness == "Polite" && value.Polarity == "Affirmative" {
+			// to runes
+			runes := []rune(value.Conjugated)
+			// remove masu (ます) and return stem
+			return string(runes[:len(runes)-2])
+		}
+	}
+	return ""
 }
